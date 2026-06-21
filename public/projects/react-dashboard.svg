@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Analytics Dashboard">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.3" cy="0.25" r="0.8">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="675" fill="#09090b"/>
+  <rect width="1200" height="675" fill="url(#g)" opacity="0.22"/>
+  <rect width="1200" height="675" fill="url(#glow)"/>
+  <g fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1">
+    <path d="M0 168 H1200 M0 336 H1200 M0 504 H1200 M300 0 V675 M600 0 V675 M900 0 V675"/>
+  </g>
+  <circle cx="940" cy="150" r="120" fill="url(#g)" opacity="0.35"/>
+  <text x="80" y="360" font-family="Geist, Inter, system-ui, sans-serif" font-size="58" font-weight="700" fill="#fafafa">Analytics Dashboard</text>
+  <text x="80" y="420" font-family="Geist, Inter, system-ui, sans-serif" font-size="26" font-weight="500" fill="#a1a1aa">Sudhir Kumar · Project Preview</text>
+</svg>
