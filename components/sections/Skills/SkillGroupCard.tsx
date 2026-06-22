@@ -4,7 +4,6 @@ import { useRef, useCallback, type PointerEvent } from "react";
 import { motion } from "framer-motion";
 import * as LucideIcons from "lucide-react";
 import { GlassCard } from "@/components/ui/GlassCard";
-import { GlowBorder } from "@/components/ui/GlowBorder";
 import { useReducedMotionSafe } from "@/hooks/useReducedMotionSafe";
 import { cn } from "@/lib/utils";
 import type { SkillGroup, Accent } from "@/types";
@@ -99,26 +98,26 @@ export function SkillGroupCard({ group }: SkillGroupCardProps) {
   const textClass = accentTextClass[group.accent];
 
   return (
-    <GlowBorder accent={group.accent} rounded="rounded-2xl" className="h-full">
-      <div
-        ref={cardRef}
-        onPointerMove={handlePointerMove}
-        onPointerLeave={handlePointerLeave}
+    <div
+      ref={cardRef}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      style={{
+        transition: reduced ? "none" : "transform 200ms ease-out",
+        willChange: "transform",
+      }}
+      className="rounded-2xl h-full"
+    >
+      {/* Single bordered box (the inner GlassCard). The previous GlowBorder
+          wrapper drew a second 1px ring just outside this one, which read as
+          two concentric boxes on short cards (Frontend, Database). */}
+      <GlassCard
+        spotlight
+        className="rounded-2xl p-6 h-full"
         style={{
-          transition: reduced
-            ? "none"
-            : "transform 200ms ease-out",
-          willChange: "transform",
+          boxShadow: `0 0 0 1px ${color}30, 0 8px 32px ${color}15`,
         }}
-        className="rounded-2xl h-full"
       >
-        <GlassCard
-          spotlight
-          className="rounded-2xl p-6 h-full"
-          style={{
-            boxShadow: `0 0 0 1px ${color}30, 0 8px 32px ${color}15`,
-          }}
-        >
           {/* Group label */}
           <h3
             className={cn(
@@ -130,14 +129,15 @@ export function SkillGroupCard({ group }: SkillGroupCardProps) {
             {group.label}
           </h3>
 
-          {/* Uniform skill grid: equal-width boxes that auto-fill the row and
-              wrap to new rows as more skills are added — always evenly spaced. */}
+          {/* Uniform skill chips: fixed-width boxes that wrap and stay centered,
+              so cards with few skills (e.g. Frontend, Database) look balanced
+              instead of stretching a lone chip across the row. */}
           <ul
-            className="grid gap-2.5 grid-cols-[repeat(auto-fill,minmax(78px,1fr))]"
+            className="flex flex-wrap justify-center gap-2.5"
             role="list"
           >
             {group.skills.map((skill) => (
-              <li key={skill.name} className="h-full">
+              <li key={skill.name} className="w-[84px]">
                 <motion.div
                   className={cn(
                     "flex h-full flex-col items-center justify-center gap-1.5 rounded-xl px-2 py-3 text-center",
@@ -181,8 +181,7 @@ export function SkillGroupCard({ group }: SkillGroupCardProps) {
               </li>
             ))}
           </ul>
-        </GlassCard>
-      </div>
-    </GlowBorder>
+      </GlassCard>
+    </div>
   );
 }

@@ -1,0 +1,14 @@
+Mascot animation: public/mascot/character.lottie
+Source: https://lottie.host/da5e25e3-921b-4913-a963-3f0b1dc88da1/RU1mSwL077.lottie
+Hosted via: LottieFiles (lottie.host)
+Author: <fill in the creator's name from the LottieFiles asset page>
+License: Lottie Simple License (FL 9.13.21) — the default for LottieFiles free
+         downloads. Confirm on the asset's LottieFiles page; if it states a
+         different license (e.g. CC0 or a Pro license), update this line.
+
+This is a third-party dotLottie (.lottie) animation sourced from LottieFiles,
+committed at the asset-path contract (/mascot/character.lottie) used by the Mascot
+component (components/mascot/Mascot.tsx).
+
+The Lottie Simple License permits use in personal and commercial projects without
+attribution, but attribution is appreciated; keep this file for provenance.

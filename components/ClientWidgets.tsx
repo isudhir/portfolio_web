@@ -20,3 +20,8 @@ export const LazyTechUniverse = dynamic(
     loading: () => <div aria-hidden className="min-h-[480px]" />,
   }
 );
+
+export const LazyMascot = dynamic(
+  () => import("@/components/mascot/Mascot").then((m) => m.Mascot),
+  { ssr: false }
+);

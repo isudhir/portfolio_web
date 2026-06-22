@@ -8,7 +8,7 @@ import { Certifications } from "@/components/sections/Certifications";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
 import { SectionDivider } from "@/components/animations/SectionDivider";
-import { LazyChatButton, LazyTechUniverse } from "@/components/ClientWidgets";
+import { LazyChatButton, LazyTechUniverse, LazyMascot } from "@/components/ClientWidgets";
 import { personJsonLd } from "@/lib/seo";
 
 export default function Home() {
@@ -50,6 +50,8 @@ export default function Home() {
       <Footer />
 
       <LazyChatButton />
+
+      <LazyMascot />
     </>
   );
 }
