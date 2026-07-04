@@ -28,6 +28,7 @@ export function CertificationCard({ certification }: CertificationCardProps) {
             fill
             className="object-contain rounded-md"
             sizes="56px"
+            unoptimized
           />
         </div>
       )}

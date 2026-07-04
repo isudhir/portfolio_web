@@ -19,6 +19,7 @@
 /out/
 /docs
 .claude
+claude.md
 
 # production
 /build

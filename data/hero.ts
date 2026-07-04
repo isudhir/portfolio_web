@@ -1,6 +1,6 @@
 export const heroData = {
   name: 'Sudhir Kumar',
-  title: 'Software Engineer II | Full Stack Developer | AI & Agentic Systems Enthusiast',
+  title: 'Software Engineer II | Full Stack Developer | AI & Agentic Systems Engineer',
   subtitles: [
     'Node.js Developer',
     'Angular Developer',

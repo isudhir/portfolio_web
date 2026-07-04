@@ -5,9 +5,9 @@ export const aboutData = {
     'Software Engineer II with 5+ years of experience building scalable applications, APIs, microservices and AI-powered workflows.',
   techChips: [
     'Node.js',
-    'TypeScript',
-    'Angular',
-    'React',
+    'RAG',
+    'LangChain',
+    'Neural Networks',
     'Next.js',
     'MongoDB',
     'MySQL',

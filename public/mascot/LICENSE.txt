@@ -1,14 +1,27 @@
-Mascot animation: public/mascot/character.lottie
-Source: https://lottie.host/da5e25e3-921b-4913-a963-3f0b1dc88da1/RU1mSwL077.lottie
-Hosted via: LottieFiles (lottie.host)
-Author: <fill in the creator's name from the LottieFiles asset page>
-License: Lottie Simple License (FL 9.13.21) — the default for LottieFiles free
-         downloads. Confirm on the asset's LottieFiles page; if it states a
-         different license (e.g. CC0 or a Pro license), update this line.
+Static gate is green for the affected packages:
+- @gymify/types tests: 19/19 (incl. 3 analytics)
+- API typecheck: clean
+- API analytics.service unit tests: 5/5
+- API lint (--max-warnings=0): clean
+- API build: succeeds
 
-This is a third-party dotLottie (.lottie) animation sourced from LottieFiles,
-committed at the asset-path contract (/mascot/character.lottie) used by the Mascot
-component (components/mascot/Mascot.tsx).
+Now waiting on the final whole-branch review (opus) before closing out Group A.
 
-The Lottie Simple License permits use in personal and commercial projects without
-attribution, but attribution is appreciated; keep this file for provenance.
+✻ Waiting for 1 background agent to finish
+
+● Agent "Final whole-branch review Group A" finished · 1m 4s
+
+The final review is Needs fixes before merge — one Critical (C1) and some non-blocking items. Let me verify C1 before acting: is MembershipPlan actually tenant-scoped, and does the plan's own Global Constraints mandate the predicate the example code omitted?
+
+  Ran 2 shell commands
+
+Confirmed: MembershipPlan is in TENANT_SCOPED_MODELS and has a tenantId column. C1 is real — and notably, the plan's own Global Constraints mandate an explicit tenantId predicate on every tenant-table reference ("tenant isolation is non-negotiable"), while the plan's example code for topPlans omitted it on the MembershipPlan join. The fix makes the code comply with the plan's binding rule (not contradict it), so I'll fix it rather than escalate.
+
+Dispatching one fix subagent for C1 (plus the I1 clarifying comment). I1/M1/M2 are design-accept/rollup items, not blockers.
+
+● Agent(Fix C1 tenant predicate on topPlans)
+Initializing…
+Error: claude-opus-4-8[1m] is temporarily unavailable, so auto mode cannot determinew. Wait briefly and then try this action again. If it keeps failing, continue with other tasks that don't require this action and come back to it later. Note: reading files, searching code, and other read-only operations do not require the classifier and can still be used.
+
+You've hit your session limit · resets 5:40pm (Asia/Calcutta)
+/upgrade to increase your usage limit.

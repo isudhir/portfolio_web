@@ -5,7 +5,7 @@ export const experience: Experience[] = [
     id: 'flavorcloud',
     company: 'FlavorCloud',
     role: 'Software Engineer II',
-    duration: '2022 – Present', // TODO confirm dates
+    duration: '2023 – Present',
     current: true,
     tech: ['Node.js', 'TypeScript', 'Redis', 'Bull Queue', 'Microservices', 'AWS', 'Docker', 'MongoDB', 'REST APIs'],
     achievements: [
@@ -20,7 +20,7 @@ export const experience: Experience[] = [
     id: 'patientbond',
     company: 'PatientBond',
     role: 'Software Engineer',
-    duration: '2020 – 2022', // TODO confirm dates
+    duration: '2021 – 2023',
     tech: ['Angular', 'Node.js', 'TypeScript', 'Twilio', 'IBM Watson', 'MySQL', 'REST APIs'],
     achievements: [
       'Delivered patient communication features via Twilio SMS/voice reaching 100 k+ patients monthly.',
@@ -28,18 +28,5 @@ export const experience: Experience[] = [
       'Rebuilt legacy Angular modules with a modern component architecture improving load time by 35%.',
       'Developed a configurable outreach rules engine enabling no-code campaign management by ops teams.',
     ],
-  },
-  {
-    id: 'upfront-healthcare',
-    company: 'Upfront Healthcare',
-    role: 'Software Engineer',
-    duration: '2019 – 2020', // TODO confirm dates
-    tech: ['Node.js', 'React', 'MySQL', 'REST APIs', 'AWS'],
-    achievements: [
-      'Contributed full-stack features across patient-facing web applications and admin dashboards.',
-      'Designed RESTful API endpoints integrating with EHR systems for real-time patient data sync.',
-      'Improved automated test coverage from 30% to 70% on critical API routes.',
-      'Worked closely with product and design teams to ship new features within two-week sprint cycles.',
-    ],
-  },
+  }
 ];

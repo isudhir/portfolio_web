@@ -4,26 +4,18 @@ import type { Certification } from '@/types';
 export const certifications: Certification[] = [
   {
     id: 'aws-solutions-architect',
-    title: 'AWS Certified Solutions Architect – Associate', // TODO confirm from LinkedIn
-    issuer: 'Amazon Web Services',
-    date: '2023', // TODO confirm date
-    url: 'https://www.credly.com/badges/placeholder', // TODO real badge URL
-    image: '/certifications/aws-solutions-architect.svg',
+    title: 'Neural Networks and Deep Learning', 
+    issuer: 'DeepLearning.AI / Coursera',
+    date: '2019',
+    url: 'https://www.coursera.org/account/accomplishments/verify/G27ZR2H47TM7', // TODO real badge URL
+    image: 'https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera.s3.amazonaws.com/media/coursera-rebrand-logo-square.png?auto=format%2Ccompress&dpr=1',
   },
   {
     id: 'nodejs-certification',
-    title: 'OpenJS Node.js Application Developer', // TODO confirm from LinkedIn
-    issuer: 'OpenJS Foundation',
-    date: '2022', // TODO confirm date
-    url: 'https://www.credly.com/badges/placeholder', // TODO real badge URL
-    image: '/certifications/nodejs-certification.svg',
-  },
-  {
-    id: 'mongodb-developer',
-    title: 'MongoDB Associate Developer', // TODO confirm from LinkedIn
-    issuer: 'MongoDB, Inc.',
-    date: '2021', // TODO confirm date
-    url: 'https://learn.mongodb.com/c/placeholder', // TODO real badge URL
-    image: '/certifications/mongodb-developer.svg',
-  },
+    title: 'Machine Learning', 
+    issuer: 'Standford University / Coursera',
+    date: '2019',
+    url: 'https://www.coursera.org/account/accomplishments/verify/2U6FZUDZFGB8', // TODO real badge URL
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPXMKyqD3BQyoFlwzib8-mSdDBjxaz3f5WM_6LWBFmneAzH_-n_9xEn5Yl&s=10',
+  }
 ];
