@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useAnimationControls } from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { navigation } from "@/data/navigation";
-import { mascotMessages } from "@/data/mascot";
+import { mascotMessages, mascotKonamiMessage } from "@/data/mascot";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { useReducedMotionSafe } from "@/hooks/useReducedMotionSafe";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
@@ -74,8 +74,31 @@ export function Mascot() {
     return () => clearTimeout(timer);
   }, [activeId, reduced, controls]);
 
+  // Konami reaction: spin + celebratory bubble for a few seconds.
+  const [konami, setKonami] = useState(false);
+  const konamiTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const onKonami = () => {
+      setKonami(true);
+      if (!reduced) {
+        void controls.start({
+          rotate: [0, 360],
+          transition: { duration: 0.8, ease: "easeInOut" },
+        });
+      }
+      if (konamiTimer.current) clearTimeout(konamiTimer.current);
+      konamiTimer.current = setTimeout(() => setKonami(false), 4000);
+    };
+    window.addEventListener("portfolio:konami", onKonami);
+    return () => {
+      window.removeEventListener("portfolio:konami", onKonami);
+      if (konamiTimer.current) clearTimeout(konamiTimer.current);
+    };
+  }, [controls, reduced]);
+
   const size = isMobile ? 72 : 112;
-  const bubbleText = mascotMessages[activeId];
+  const bubbleText = konami ? mascotKonamiMessage : mascotMessages[activeId];
 
   return (
     <div
@@ -98,7 +121,7 @@ export function Mascot() {
       </motion.div>
 
       {bubbleText && (
-        <Bubble key={activeId} text={bubbleText} reduced={reduced} />
+        <Bubble key={konami ? "konami" : activeId} text={bubbleText} reduced={reduced} />
       )}
     </div>
   );

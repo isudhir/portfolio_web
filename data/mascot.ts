@@ -10,7 +10,12 @@ export const mascotMessages: Record<string, string> = {
   skills: "My toolkit",
   experience: "Where I've worked",
   projects: "Check out my work!",
+  github: "My open source 🐙",
   tech: "Tech I love",
   certifications: "My credentials",
+  education: "Where I studied 🎓",
   contact: "Let's talk!",
 };
+
+/** Shown when the konami code fires (separate from section messages). */
+export const mascotKonamiMessage = "🎉 You found the secret!";

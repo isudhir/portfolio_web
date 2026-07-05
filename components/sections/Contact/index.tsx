@@ -14,11 +14,11 @@ function ContactInfo() {
     <div className="flex flex-col gap-6">
       <div>
         <h3 className="text-xl font-semibold text-foreground mb-2">
-          Get in Touch
+          Contact Channels
         </h3>
         <p className="text-sm text-muted-foreground leading-relaxed">
           I&apos;m always open to interesting conversations, new projects, or just
-          a friendly hello. Feel free to reach out through any channel below.
+          a friendly hello. Reach out through any channel below.
         </p>
       </div>
 
@@ -89,9 +89,8 @@ export function Contact() {
         <Reveal>
           <SectionHeading
             eyebrow="Contact"
-            title="Let's Work Together"
-            gradientTitle
-            subtitle="Have a project in mind or want to collaborate? Drop me a message."
+            title="Get in Touch"
+            subtitle="Whether it's a role, a project, or a question — my inbox is open."
           />
         </Reveal>
 

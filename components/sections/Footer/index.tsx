@@ -2,17 +2,10 @@
 
 import { ArrowUp } from "lucide-react";
 import { social } from "@/data/social";
+import { navigation } from "@/data/navigation";
 import { getIcon } from "@/lib/icons";
 import { cn } from "@/lib/utils";
-
-/* ─── Nav links inside footer ────────────────────────────── */
-
-const NAV_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Contact", href: "#contact" },
-];
+import { LocalTime } from "./LocalTime";
 
 /* ─── Back to top ────────────────────────────────────────── */
 
@@ -72,12 +65,13 @@ export function Footer() {
             <p className="text-xs text-muted-foreground">
               &copy; {currentYear} Sudhir Kumar. All rights reserved.
             </p>
+            <LocalTime />
           </div>
 
           {/* Nav links */}
           <nav aria-label="Footer navigation">
             <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-              {NAV_LINKS.map((link) => (
+              {navigation.filter((item) => item.id !== "home").map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}

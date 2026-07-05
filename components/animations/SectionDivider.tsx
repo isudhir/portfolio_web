@@ -9,9 +9,9 @@ export interface SectionDividerProps {
 }
 
 /**
- * Decorative center-motif section divider: a glowing diamond flanked by short
- * gradient lines that taper to transparent (no full-width hard edge). The
- * aurora shimmer sweeps along each line; the whole motif reveals on scroll.
+ * Quiet center-motif section divider: a small diamond flanked by short neutral
+ * lines that taper to transparent (no full-width hard edge). A single subtle
+ * accent shimmer sweeps along each line; the motif reveals on scroll.
  * GPU-friendly: animates only opacity/transform.
  * Reduced motion: a static, dimmer version of the same motif.
  */
@@ -40,53 +40,34 @@ export function SectionDivider({ className }: SectionDividerProps) {
       viewport={{ once: true, margin: "-10% 0px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      {/* Left tapering line + aurora shimmer */}
+      {/* Left tapering line + accent shimmer */}
       <div className="relative h-px w-24 overflow-hidden">
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(90deg, transparent, var(--accent-purple))",
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-border" />
         <motion.div
           className="absolute inset-y-0 w-1/2"
           style={{
             background:
-              "linear-gradient(90deg, transparent, var(--accent-cyan), transparent)",
+              "linear-gradient(90deg, transparent, color-mix(in oklab, var(--accent-indigo) 55%, transparent), transparent)",
           }}
           animate={{ x: ["-100%", "300%"] }}
-          transition={{ duration: 3, ease: "linear", repeat: Infinity, repeatDelay: 1.5 }}
+          transition={{ duration: 4, ease: "linear", repeat: Infinity, repeatDelay: 3 }}
         />
       </div>
 
-      {/* Center glowing diamond */}
-      <motion.span
-        className="h-2.5 w-2.5 rotate-45 rounded-[2px]"
-        style={{
-          background:
-            "linear-gradient(135deg, var(--accent-purple), var(--accent-indigo), var(--accent-cyan))",
-          boxShadow: "0 0 12px 2px var(--accent-indigo)",
-        }}
-        animate={{ opacity: [0.6, 1, 0.6], scale: [1, 1.15, 1] }}
-        transition={{ duration: 2.5, ease: "easeInOut", repeat: Infinity }}
-      />
+      {/* Center diamond */}
+      <span className="h-1.5 w-1.5 rotate-45 rounded-[1px] bg-muted-foreground/60" />
 
-      {/* Right tapering line + aurora shimmer */}
+      {/* Right tapering line + accent shimmer */}
       <div className="relative h-px w-24 overflow-hidden">
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(90deg, var(--accent-cyan), transparent)",
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-l from-transparent to-border" />
         <motion.div
           className="absolute inset-y-0 w-1/2"
           style={{
             background:
-              "linear-gradient(90deg, transparent, var(--accent-purple), transparent)",
+              "linear-gradient(90deg, transparent, color-mix(in oklab, var(--accent-indigo) 55%, transparent), transparent)",
           }}
           animate={{ x: ["300%", "-100%"] }}
-          transition={{ duration: 3, ease: "linear", repeat: Infinity, repeatDelay: 1.5 }}
+          transition={{ duration: 4, ease: "linear", repeat: Infinity, repeatDelay: 3 }}
         />
       </div>
     </motion.div>

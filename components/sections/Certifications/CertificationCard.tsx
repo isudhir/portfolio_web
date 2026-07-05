@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import type { Certification } from "@/types";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { TiltCard } from "@/components/ui/TiltCard";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
 interface CertificationCardProps {
@@ -14,10 +15,11 @@ export function CertificationCard({ certification }: CertificationCardProps) {
   const { title, issuer, date, url, image } = certification;
 
   return (
+    <TiltCard maxTilt={6}>
     <GlassCard
       spotlight
       glow="purple"
-      className="flex flex-col gap-4 p-6 h-full transition-transform duration-200 hover:-translate-y-1"
+      className="flex flex-col gap-4 p-6 h-full"
     >
       {/* Image */}
       {image && (
@@ -61,5 +63,6 @@ export function CertificationCard({ certification }: CertificationCardProps) {
         </div>
       )}
     </GlassCard>
+    </TiltCard>
   );
 }

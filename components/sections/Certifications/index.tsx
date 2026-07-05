@@ -1,9 +1,14 @@
 "use client";
 
 import { certifications } from "@/data/certifications";
+import { getIcon } from "@/lib/icons";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/animations/Reveal";
 import { CertificationCard } from "./CertificationCard";
+
+// Resolved at module scope: react-hooks/static-components forbids creating
+// component references during render.
+const GraduationCapIcon = getIcon("GraduationCap");
 
 export function Certifications() {
   const isEmpty = certifications.length === 0;
@@ -17,22 +22,21 @@ export function Certifications() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading
-            eyebrow="Achievements"
+            eyebrow="Credentials"
             title="Certifications"
-            gradientTitle
-            subtitle="Professional certifications and credentials."
           />
         </Reveal>
 
         {isEmpty ? (
           <Reveal delay={0.1}>
             <div className="flex flex-col items-center justify-center py-16 text-center">
-              <div
-                aria-hidden="true"
-                className="mb-4 text-5xl opacity-30"
-              >
-                🎓
-              </div>
+              {GraduationCapIcon ? (
+                <GraduationCapIcon
+                  aria-hidden="true"
+                  className="mb-4 h-12 w-12 text-muted-foreground/40"
+                  strokeWidth={1.5}
+                />
+              ) : null}
               <p className="text-lg font-medium text-muted-foreground">
                 Certifications coming soon
               </p>

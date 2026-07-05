@@ -4,31 +4,60 @@ import Image from "next/image";
 import { GitFork, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { TiltCard } from "@/components/ui/TiltCard";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { projectHasDetails } from "./ProjectModal";
 import type { Project } from "@/types";
 
 export interface ProjectCardProps {
   project: Project;
+  /** When provided (and the project has case-study fields), the card opens the detail modal. */
+  onOpen?: (id: string) => void;
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, onOpen }: ProjectCardProps) {
+  const openable = Boolean(onOpen) && projectHasDetails(project);
+
+  const handleOpen = (e: React.MouseEvent | React.KeyboardEvent) => {
+    const target = e.target as Element;
+    if (target.closest("a, button")) return; // let card links behave normally
+    onOpen?.(project.id);
+  };
+
   return (
     <motion.div
       layout
+      layoutId={`project-${project.id}`}
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.25, ease: "easeOut" }}
-      className="group h-full"
+      className={cn("group h-full", openable && "cursor-pointer")}
+      role={openable ? "button" : undefined}
+      tabIndex={openable ? 0 : undefined}
+      data-cursor={openable ? "view" : undefined}
+      aria-haspopup={openable ? "dialog" : undefined}
+      onClick={openable ? handleOpen : undefined}
+      onKeyDown={
+        openable
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                handleOpen(e);
+              }
+            }
+          : undefined
+      }
     >
+      <TiltCard maxTilt={6}>
       <GlassCard
         spotlight
         className={cn(
           "flex h-full flex-col overflow-hidden rounded-2xl",
           "transition-all duration-300",
-          "hover:-translate-y-1 hover:shadow-[0_0_40px_var(--accent-purple)/25%]"
+          "hover:shadow-[0_0_40px_var(--accent-purple)/25%]"
         )}
         style={{ willChange: "transform, box-shadow" }}
       >
@@ -141,6 +170,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           )}
         </div>
       </GlassCard>
+      </TiltCard>
     </motion.div>
   );
 }

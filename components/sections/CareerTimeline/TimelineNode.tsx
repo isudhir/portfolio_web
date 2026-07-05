@@ -12,7 +12,6 @@ import type { CareerEntry, Accent } from "@/types";
 interface TimelineNodeProps {
   entry: CareerEntry;
   index: number;
-  isLast: boolean;
 }
 
 const accentColor: Record<Accent, string> = {
@@ -39,7 +38,7 @@ const accentGlowClass: Record<Accent, string> = {
   cyan: "shadow-[0_0_16px_var(--accent-cyan)60]",
 };
 
-export function TimelineNode({ entry, index, isLast }: TimelineNodeProps) {
+export function TimelineNode({ entry, index }: TimelineNodeProps) {
   const [expanded, setExpanded] = useState(false);
   const color = accentColor[entry.accent];
 
@@ -74,17 +73,6 @@ export function TimelineNode({ entry, index, isLast }: TimelineNodeProps) {
               style={{ backgroundColor: color }}
             />
           </motion.div>
-
-          {/* Connector line */}
-          {!isLast && (
-            <div
-              className="w-px flex-1 mt-2 min-h-[2rem]"
-              style={{
-                background: `linear-gradient(to bottom, ${color}80, var(--accent-indigo)40, transparent)`,
-              }}
-              aria-hidden="true"
-            />
-          )}
         </div>
 
         {/* Card */}

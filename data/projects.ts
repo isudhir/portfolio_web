@@ -13,6 +13,17 @@ export const projects: Project[] = [
     github: 'https://github.com/sudhir-here/ai-workflow-engine', // TODO real URL
     demo: 'https://ai-workflow-engine.demo', // TODO real URL
     featured: true,
+    // Case-study details (opens a modal on the card) — TODO confirm specifics
+    role: 'Lead Engineer',
+    year: '2025',
+    longDescription:
+      'Designed and built an agentic orchestration platform where multi-step AI workflows are declared as graphs of LLM calls, tool invocations, and human-in-the-loop approval gates. Workflows are queued, retried, and observable end-to-end, so teams can ship reliable automation instead of one-off prompt scripts.',
+    highlights: [
+      'Graph-based workflow definitions with branching, retries, and human approval steps.',
+      'Streaming tool-use loop over OpenAI/LangChain with pluggable tool adapters.',
+      'Redis + Bull Queue execution layer with per-step observability and replay.',
+      'Dockerized deploys with horizontal workers for parallel workflow runs.',
+    ],
   },
   {
     id: 'shipping-microservices',
@@ -25,6 +36,17 @@ export const projects: Project[] = [
     github: 'https://github.com/sudhir-here/shipping-microservices', // TODO real URL
     demo: undefined,
     featured: true,
+    // Case-study details (opens a modal on the card) — TODO confirm specifics
+    role: 'Backend Engineer',
+    year: '2024',
+    longDescription:
+      'Built an event-driven logistics backbone that connects carriers, customs providers, and internal fulfilment systems through a unified adapter layer. Each integration is an isolated service speaking a shared event contract, so onboarding a new carrier is configuration plus one adapter — not a rewrite.',
+    highlights: [
+      'Unified carrier/customs adapter layer normalizing wildly different partner APIs.',
+      'Event-driven services on Redis streams with idempotent, replayable consumers.',
+      'MongoDB-backed shipment state machine tracking every parcel lifecycle event.',
+      'AWS-hosted, Dockerized services with zero-downtime rolling deploys.',
+    ],
   },
   {
     id: 'patient-engagement-platform',
@@ -69,5 +91,16 @@ export const projects: Project[] = [
     categories: ['AI', 'Full Stack'],
     github: 'https://github.com/sudhir-here/mcp-ai-assistant', // TODO real URL
     demo: 'https://mcp-ai-assistant.demo', // TODO real URL
+    // Case-study details (opens a modal on the card) — TODO confirm specifics
+    role: 'Creator',
+    year: '2025',
+    longDescription:
+      'Built a context-aware AI assistant on the Model Context Protocol: instead of stuffing prompts, the assistant discovers MCP servers at runtime and pulls in developer tools, documentation, and project data exactly when a conversation needs them.',
+    highlights: [
+      'Dynamic MCP server discovery — new tools become available without redeploying.',
+      'Typed tool-call layer with schema validation on every request/response.',
+      'Next.js chat UI with streaming responses and tool-use transcripts.',
+      'Claude-powered reasoning loop that picks the right tool per task.',
+    ],
   },
 ];

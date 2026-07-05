@@ -18,10 +18,8 @@ export function About() {
         {/* Section heading */}
         <Reveal>
           <SectionHeading
-            eyebrow="About me"
-            title="Who I Am"
-            gradientTitle
-            subtitle="Turning complex engineering challenges into elegant, scalable solutions."
+            eyebrow="About"
+            title="About Me"
           />
         </Reveal>
 

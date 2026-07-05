@@ -85,7 +85,9 @@
   --chart-5: oklch(0.269 0 0);
   --radius: 0.75rem;
   --accent-purple: #a855f7;
-  --accent-indigo: #6366f1;
+  /* Violet, not blue-leaning indigo: keeps the accent family purple so dark
+     surfaces don't pick up a blue cast. */
+  --accent-indigo: #8b5cf6;
   --accent-cyan: #22d3ee;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -98,18 +100,18 @@
 }
 
 .dark {
-  --background: #09090b;
+  --background: #0a0a0a;
   --foreground: #f5f5f7;
-  --card: #111827;
+  --card: #101010;
   --card-foreground: #f5f5f7;
-  --popover: #0f1422;
+  --popover: #141414;
   --popover-foreground: #f5f5f7;
   --primary: #a78bfa;
   --primary-foreground: #0a0a0f;
 
-  /* Brand accents */
+  /* Brand accents (indigo slot holds violet — see :root note) */
   --accent-purple: #a855f7;
-  --accent-indigo: #6366f1;
+  --accent-indigo: #8b5cf6;
   --accent-cyan: #22d3ee;
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -169,6 +171,37 @@
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
+@keyframes glitch-shift {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-3px, 2px); }
+  40% { transform: translate(3px, -2px); }
+  60% { transform: translate(-2px, -1px); }
+  80% { transform: translate(2px, 1px); }
+}
+
+/* Chromatic-split glitch (404 page). Layers are hidden under reduced motion. */
+.glitch { position: relative; display: inline-block; }
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0.65;
+  pointer-events: none;
+}
+.glitch::before {
+  color: var(--accent-cyan);
+  clip-path: inset(0 0 55% 0);
+  animation: glitch-shift 2.4s steps(2, jump-none) infinite;
+}
+.glitch::after {
+  color: var(--accent-purple);
+  clip-path: inset(45% 0 0 0);
+  animation: glitch-shift 2.4s steps(2, jump-none) infinite reverse;
+}
+@media (prefers-reduced-motion: reduce) {
+  .glitch::before, .glitch::after { display: none; }
+}
 
 /* ---- Utilities ---- */
 @utility glass {
@@ -206,15 +239,15 @@
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--background); }
 ::-webkit-scrollbar-thumb {
-  background: color-mix(in oklab, var(--accent-indigo) 50%, transparent);
+  background: color-mix(in oklab, white 18%, transparent);
   border-radius: 9999px;
   border: 2px solid var(--background);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: color-mix(in oklab, var(--accent-purple) 60%, transparent);
+  background: color-mix(in oklab, white 28%, transparent);
 }
 ::selection {
-  background: color-mix(in oklab, var(--accent-purple) 40%, transparent);
+  background: color-mix(in oklab, var(--accent-purple) 30%, transparent);
   color: #fff;
 }
 

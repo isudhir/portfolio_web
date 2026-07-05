@@ -6,10 +6,13 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/animations/Reveal";
 import { projects } from "@/data/projects";
 import { ProjectCard } from "./ProjectCard";
+import { ProjectModal } from "./ProjectModal";
 import { ProjectFilters, type FilterValue } from "./ProjectFilters";
 
 export function Projects() {
   const [activeFilter, setActiveFilter] = useState<FilterValue>("All");
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const activeProject = projects.find((p) => p.id === activeId) ?? null;
 
   const filtered =
     activeFilter === "All"
@@ -25,10 +28,9 @@ export function Projects() {
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <SectionHeading
-            eyebrow="Portfolio"
-            title="Projects"
-            gradientTitle
-            subtitle="A selection of things I've built — from AI orchestration engines to patient engagement platforms."
+            eyebrow="Work"
+            title="Selected Projects"
+            subtitle="Production systems and experiments — open a card for the full case study."
           />
         </Reveal>
 
@@ -44,10 +46,13 @@ export function Projects() {
         >
           <AnimatePresence mode="popLayout">
             {filtered.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard key={project.id} project={project} onOpen={setActiveId} />
             ))}
           </AnimatePresence>
         </motion.div>
+
+        {/* Case-study modal (shared-element with the matching card) */}
+        <ProjectModal project={activeProject} onClose={() => setActiveId(null)} />
 
         {/* Empty state */}
         <AnimatePresence>

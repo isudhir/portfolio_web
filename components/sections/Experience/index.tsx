@@ -15,10 +15,9 @@ export function Experience() {
       <div className="mx-auto max-w-5xl">
         <Reveal>
           <SectionHeading
-            eyebrow="Career"
+            eyebrow="Work"
             title="Experience"
-            gradientTitle
-            subtitle="A track record of shipping impactful software at scale."
+            subtitle="Roles I've held and what I shipped in each."
           />
         </Reveal>
 

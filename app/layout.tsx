@@ -11,6 +11,8 @@ import { CommandPalette } from "@/components/ui/CommandPalette";
 import { LoadingScreen } from "@/components/ui/LoadingScreen";
 import { BackToTop } from "@/components/ui/BackToTop";
 import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
+import { KonamiEasterEgg } from "@/components/ui/KonamiEasterEgg";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 import { buildMetadata } from "@/lib/seo";
 
 const geistSans = Geist({
@@ -60,6 +62,12 @@ export default function RootLayout({
 
             {/* Back to top button (z-50, right side) */}
             <BackToTop />
+
+            {/* Konami-code confetti (z-9995) */}
+            <KonamiEasterEgg />
+
+            {/* Additive custom cursor, fine pointers only (z-9999) */}
+            <CustomCursor />
 
             {/* Command palette (z-200+) */}
             <CommandPalette />

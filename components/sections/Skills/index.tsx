@@ -15,10 +15,9 @@ export function Skills() {
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <SectionHeading
-            eyebrow="Expertise"
+            eyebrow="Toolkit"
             title="Skills"
-            gradientTitle
-            subtitle="Technologies and tools I use to build robust, scalable products."
+            subtitle="The tools I use daily, grouped by discipline."
           />
         </Reveal>
 

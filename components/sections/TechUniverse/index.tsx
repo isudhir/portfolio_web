@@ -18,17 +18,16 @@ export function TechUniverse() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(99,102,241,0.06) 0%, transparent 70%)",
+            "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(139,92,246,0.05) 0%, transparent 70%)",
         }}
       />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading
-            eyebrow="Ecosystem"
+            eyebrow="Stack"
             title="Tech Universe"
-            gradientTitle
-            subtitle="Technologies I work with daily — hover to explore the constellation."
+            subtitle="An interactive map of my stack — hover to explore."
           />
         </Reveal>
 

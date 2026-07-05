@@ -24,6 +24,12 @@ export interface Project {
   github?: string;
   demo?: string;
   featured?: boolean;
+  /** Case-study fields — presence of any makes the card open a detail modal */
+  longDescription?: string;
+  role?: string;
+  year?: string;
+  highlights?: string[];
+  gallery?: string[];
 }
 
 export interface Experience {
@@ -77,4 +83,31 @@ export interface Counter {
   label: string;
   value: number;
   suffix?: string;
+}
+
+export interface Education {
+  id: string;
+  institution: string;
+  degree: string;
+  field?: string;
+  duration: string;
+  details?: string[];
+  accent: Accent;
+}
+
+export interface LanguageStat {
+  name: string;
+  percent: number; // 0–100
+  accent: Accent;
+}
+
+export interface GithubStats {
+  username: string;
+  profileUrl: string;
+  counters: Counter[];
+  languages: LanguageStat[];
+  /** Seed for the decorative (illustrative) contribution heatmap */
+  heatmapSeed: number;
+  /** Number of week-columns in the heatmap */
+  weeks: number;
 }

@@ -1,7 +1,24 @@
 "use client";
 
+import { useRef } from "react";
+import { useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useScramble } from "@/hooks/useScramble";
+import { useReducedMotionSafe } from "@/hooks/useReducedMotionSafe";
 import { GradientText } from "./GradientText";
+
+/** Decode-on-first-view title. Plain text under reduced motion. */
+function ScrambleTitle({ text }: { text: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const reduced = useReducedMotionSafe();
+  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+  const display = useScramble(text, inView && !reduced);
+  return (
+    <span ref={ref} aria-label={text}>
+      <span aria-hidden="true">{display}</span>
+    </span>
+  );
+}
 
 export interface SectionHeadingProps {
   /** Small label above the main title */
@@ -38,7 +55,7 @@ export function SectionHeading({
       {eyebrow && (
         <p
           className={cn(
-            "text-sm font-semibold uppercase tracking-widest text-purple",
+            "font-mono text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground",
             !isCenter && "text-left"
           )}
         >
@@ -54,10 +71,10 @@ export function SectionHeading({
       >
         {gradientTitle ? (
           <GradientText as="span" animated>
-            {title}
+            <ScrambleTitle text={title} />
           </GradientText>
         ) : (
-          title
+          <ScrambleTitle text={title} />
         )}
       </h2>
 

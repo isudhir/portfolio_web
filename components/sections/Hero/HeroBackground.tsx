@@ -51,7 +51,7 @@ export function HeroBackground({ className }: HeroBackgroundProps) {
     >
       {/* Aurora gradient base */}
       <div
-        className="absolute inset-0 animate-aurora opacity-60"
+        className="absolute inset-0 animate-aurora opacity-40"
         style={{
           background:
             "radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-purple)30, transparent)," +

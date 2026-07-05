@@ -18,3 +18,19 @@ if (!window.matchMedia) {
     }),
   });
 }
+
+// jsdom does not implement IntersectionObserver; framer-motion's useInView
+// (SectionHeading scramble titles) constructs one on mount. Inert stub:
+// elements simply never intersect in tests.
+if (!("IntersectionObserver" in window)) {
+  class IO {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+    takeRecords() {
+      return [];
+    }
+  }
+  // @ts-expect-error test stub
+  window.IntersectionObserver = IO;
+}
