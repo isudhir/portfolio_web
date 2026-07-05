@@ -178,6 +178,21 @@
   60% { transform: translate(-2px, -1px); }
   80% { transform: translate(2px, 1px); }
 }
+/* Spinner shown by SplineScene's Suspense fallback while the 3D runtime loads */
+.loader {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  border: 3px solid color-mix(in oklab, var(--accent-purple) 30%, transparent);
+  border-top-color: var(--accent-purple);
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .loader { animation: none; }
+}
 
 /* Chromatic-split glitch (404 page). Layers are hidden under reduced motion. */
 .glitch { position: relative; display: inline-block; }

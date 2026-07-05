@@ -22,7 +22,7 @@ const CANNED_ANSWERS: Record<string, string> = {
 };
 
 const FALLBACK_ANSWER =
-  "Great question! I'm Sudhir Kumar, a Software Engineer II specialising in Node.js, TypeScript, and AI integrations. Feel free to ask me about my projects, experience, or how to get in touch.";
+  "Great question! Chatbot is still in development. Falling back to a default response: I'm Sudhir Kumar, a Software Engineer II specialising in Node.js, TypeScript, and AI integrations. Feel free to ask me about my projects, experience, or how to get in touch.";
 
 function normalise(text: string): string {
   return text.toLowerCase().replace(/[?!.,]/g, '').trim();

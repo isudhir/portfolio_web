@@ -76,14 +76,6 @@ export function HeroBackground({ className }: HeroBackgroundProps) {
           }}
         />
       )}
-
-      {/* Bottom fade to blend into page */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-32"
-        style={{
-          background: "linear-gradient(to bottom, transparent, var(--background))",
-        }}
-      />
     </div>
   );
 }

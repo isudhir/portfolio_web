@@ -5,24 +5,23 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/animations/Reveal";
 import { social } from "@/data/social";
+import { cn } from "@/lib/utils";
 import { ContactForm } from "./ContactForm";
 
-/* ─── Social info item ───────────────────────────────────── */
+/* ─── Centered contact channels ──────────────────────────── */
 
-function ContactInfo() {
+function ContactChannels() {
   return (
-    <div className="flex flex-col gap-6">
-      <div>
-        <h3 className="text-xl font-semibold text-foreground mb-2">
-          Contact Channels
-        </h3>
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          I&apos;m always open to interesting conversations, new projects, or just
-          a friendly hello. Reach out through any channel below.
-        </p>
-      </div>
+    <div className="text-center">
+      <p className="mx-auto mb-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+        I&apos;m always open to interesting conversations, new projects, or just
+        a friendly hello. Reach out through any channel below.
+      </p>
 
-      <ul className="flex flex-col gap-3" aria-label="Contact channels">
+      <ul
+        className="flex flex-wrap items-center justify-center gap-3"
+        aria-label="Contact channels"
+      >
         {social.map((link) => {
           const Icon = getIcon(link.icon);
           return (
@@ -30,38 +29,26 @@ function ContactInfo() {
               <a
                 href={link.href}
                 target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-                rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                className="group flex items-center gap-3 rounded-lg px-3 py-2 -mx-3 transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple"
+                rel={
+                  link.href.startsWith("mailto:")
+                    ? undefined
+                    : "noopener noreferrer"
+                }
                 aria-label={link.label}
-              >
-                {Icon && (
-                  <span
-                    className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-purple/10 text-purple transition-colors group-hover:bg-purple/20"
-                    aria-hidden="true"
-                  >
-                    <Icon size={18} />
-                  </span>
+                className={cn(
+                  "flex h-10 w-10 items-center justify-center rounded-full",
+                  "border border-border bg-card/60 text-muted-foreground",
+                  "hover:border-purple/60 hover:text-purple hover:bg-purple/10",
+                  "transition-all duration-200",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 )}
-                <span className="text-sm font-medium text-foreground group-hover:text-purple transition-colors">
-                  {link.label}
-                </span>
+              >
+                {Icon ? <Icon size={18} aria-hidden="true" /> : null}
               </a>
             </li>
           );
         })}
       </ul>
-
-      {/* Decorative gradient blob */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none mt-auto"
-        style={{
-          height: "1px",
-          background:
-            "linear-gradient(90deg, var(--accent-purple), var(--accent-indigo), var(--accent-cyan))",
-          opacity: 0.4,
-        }}
-      />
     </div>
   );
 }
@@ -70,11 +57,7 @@ function ContactInfo() {
 
 export function Contact() {
   return (
-    <section
-      id="contact"
-      aria-label="Contact"
-      className="relative py-24"
-    >
+    <section id="contact" aria-label="Contact" className="relative py-24">
       {/* Background glow */}
       <div
         aria-hidden="true"
@@ -85,7 +68,7 @@ export function Contact() {
         }}
       />
 
-      <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading
             eyebrow="Contact"
@@ -95,13 +78,18 @@ export function Contact() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <GlassCard className="grid gap-10 p-6 sm:p-8 md:grid-cols-[1fr_1.6fr] md:gap-12">
-            <ContactInfo />
-            <div>
-              <h3 className="text-xl font-semibold text-foreground mb-6">
-                Send a Message
-              </h3>
-              <ContactForm />
+          <GlassCard className="p-6 sm:p-8">
+            <div className="flex flex-col gap-8">
+              <div>
+                <h3 className="mb-6 text-center text-xl font-semibold text-foreground">
+                  Send a Message
+                </h3>
+                <ContactForm />
+              </div>
+
+              <div className="border-t border-border/50 pt-8">
+                <ContactChannels />
+              </div>
             </div>
           </GlassCard>
         </Reveal>

@@ -13,6 +13,7 @@ import { BackToTop } from "@/components/ui/BackToTop";
 import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
 import { KonamiEasterEgg } from "@/components/ui/KonamiEasterEgg";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { SplineBackground } from "@/components/ui/SplineBackground";
 import { buildMetadata } from "@/lib/seo";
 
 const geistSans = Geist({
@@ -39,6 +40,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col noise">
+        {/* Full-viewport 3D scene behind everything, follows the cursor (z-0).
+            Desktop pointers only; disabled under reduced motion. */}
+        <SplineBackground />
+
         {/* Vignette + grain layer (z-2) */}
         <NoiseOverlay />
 

@@ -9,8 +9,7 @@ import { Education } from "@/components/sections/Education";
 import { GithubStats } from "@/components/sections/GithubStats";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
-import { SectionDivider } from "@/components/animations/SectionDivider";
-import { LazyChatButton, LazyTechUniverse, LazyMascot } from "@/components/ClientWidgets";
+import { LazyChatButton, LazyTechUniverse } from "@/components/ClientWidgets";
 import { personJsonLd } from "@/lib/seo";
 
 export default function Home() {
@@ -21,45 +20,25 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }}
       />
 
+      {/* One continuous page: sections flow directly with their own vertical
+          padding — no divider motif between them. */}
       <main className="relative z-10 flex-1">
         <Hero />
-
-        <SectionDivider />
         <About />
-
-        <SectionDivider />
         <CareerTimeline />
-
-        <SectionDivider />
         <Skills />
-
-        <SectionDivider />
         <Experience />
-
-        <SectionDivider />
         <Projects />
-
-        <SectionDivider />
         <GithubStats />
-
-        <SectionDivider />
         <LazyTechUniverse />
-
-        <SectionDivider />
         <Certifications />
-
-        <SectionDivider />
         <Education />
-
-        <SectionDivider />
         <Contact />
       </main>
 
       <Footer />
 
       <LazyChatButton />
-
-      <LazyMascot />
     </>
   );
 }

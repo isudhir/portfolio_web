@@ -1,12 +1,12 @@
 export const heroData = {
   name: 'Sudhir Kumar',
   title:
-    'Software Engineer II building full-stack products, backend platforms, and agentic AI systems.',
+    'Software Engineer II | Building full-stack products, Backend platforms, and Agentic AI systems.',
   availability: { show: true, label: 'Open to new opportunities' },
   subtitles: [
     'Backend & distributed systems',
-    'Full-stack product engineering',
     'AI & agentic workflows',
+    'Full-stack product engineering',
   ],
   ctas: [
     { label: 'View Projects', href: '#projects', variant: 'primary' as const },

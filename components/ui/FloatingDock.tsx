@@ -28,23 +28,24 @@ function DockItem({
   href,
   icon,
   isActive,
-  mouseX,
+  mouseY,
 }: {
   id: string;
   label: string;
   href: string;
   icon: string;
   isActive: boolean;
-  mouseX: ReturnType<typeof useMotionValue<number>>;
+  mouseY: ReturnType<typeof useMotionValue<number>>;
 }) {
   const ref = useRef<HTMLButtonElement>(null);
 
-  const distance = useTransform(mouseX, (val: number) => {
+  // Vertical dock: magnify based on the cursor's distance along the Y axis.
+  const distance = useTransform(mouseY, (val: number) => {
     const bounds = ref.current?.getBoundingClientRect() ?? {
-      x: 0,
-      width: 0,
+      y: 0,
+      height: 0,
     };
-    return val - bounds.x - bounds.width / 2;
+    return val - bounds.y - bounds.height / 2;
   });
 
   const scaleRaw = useTransform(
@@ -65,11 +66,11 @@ function DockItem({
   };
 
   return (
-    <div className="relative flex flex-col items-center group">
-      {/* Tooltip */}
+    <div className="relative flex items-center group">
+      {/* Tooltip — to the right of the icon for the vertical dock */}
       <span
         className={cn(
-          "absolute -top-8 left-1/2 -translate-x-1/2",
+          "absolute left-full top-1/2 -translate-y-1/2 ml-3",
           "rounded-md px-2 py-0.5 text-xs whitespace-nowrap",
           "bg-card/90 text-foreground border border-border",
           "opacity-0 group-hover:opacity-100 pointer-events-none",
@@ -96,10 +97,10 @@ function DockItem({
           scale,
         }}
       >
-        {/* Active indicator dot */}
+        {/* Active indicator dot — on the left edge */}
         {isActive && (
           <span
-            className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-purple"
+            className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-purple"
             aria-hidden="true"
           />
         )}
@@ -110,38 +111,41 @@ function DockItem({
 }
 
 /**
- * Fixed bottom-center glass dock driven from data/navigation.ts.
+ * Fixed left-center vertical glass dock driven from data/navigation.ts.
  * Hover magnification, active section highlighting, smooth-scroll on click.
- * Collapses to icon-only on small screens.
+ * Scrolls internally on short viewports.
  */
 export function FloatingDock() {
   const sectionIds = navigation.map((item) => item.id);
   const activeId = useActiveSection(sectionIds);
-  const mouseX = useMotionValue(Infinity);
+  const mouseY = useMotionValue(Infinity);
 
   return (
     <nav
       aria-label="Section navigation dock"
       className={cn(
-        "fixed bottom-6 left-1/2 -translate-x-1/2 z-50",
-        // On very small screens collapse to a narrow strip
-        "max-w-[calc(100vw-2rem)]"
+        "fixed left-4 top-1/2 -translate-y-1/2 z-50",
+        // Never exceed the viewport height on short screens
+        "max-h-[calc(100vh-2rem)]"
       )}
     >
       <motion.div
         onMouseMove={(e) => {
-          mouseX.set(e.clientX);
+          mouseY.set(e.clientY);
         }}
         onMouseLeave={() => {
-          mouseX.set(Infinity);
+          mouseY.set(Infinity);
         }}
         className={cn(
-          "glass flex items-end gap-1 rounded-2xl px-3 py-2",
+          "glass flex flex-col items-center gap-1 rounded-2xl px-2 py-3",
           "border border-border/50 shadow-lg",
-          "overflow-x-auto scrollbar-none"
+          // Scrollable on short screens; from sm+ let hover labels overflow
+          // to the right instead of being clipped (overflow-y:auto would
+          // otherwise force overflow-x to clip too).
+          "overflow-y-auto scrollbar-none sm:overflow-visible"
         )}
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 200, damping: 30, delay: 0.5 }}
       >
         {navigation.map((item) => (
@@ -152,7 +156,7 @@ export function FloatingDock() {
             href={item.href}
             icon={item.icon}
             isActive={activeId === item.id}
-            mouseX={mouseX}
+            mouseY={mouseY}
           />
         ))}
       </motion.div>

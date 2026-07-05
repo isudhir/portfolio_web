@@ -21,7 +21,14 @@ export const LazyTechUniverse = dynamic(
   }
 );
 
-export const LazyMascot = dynamic(
-  () => import("@/components/mascot/Mascot").then((m) => m.Mascot),
-  { ssr: false }
+export const LazySplineScene = dynamic(
+  () => import("@/components/ui/splite").then((m) => m.SplineScene),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex h-full w-full items-center justify-center">
+        <span className="loader" />
+      </div>
+    ),
+  }
 );
