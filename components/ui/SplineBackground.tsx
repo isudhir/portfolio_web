@@ -11,22 +11,23 @@ const SPLINE_SCENE =
 
 /**
  * Fixed, full-viewport 3D scene rendered behind all page content (mounted once
- * in the root layout, so it spans every route).
+ * in the root layout, so it spans every route). Shown on every viewport size;
+ * only reduced motion disables it.
  *
  * The layer stays `pointer-events-none` so it never intercepts clicks. This
  * scene tracks the cursor via canvas-scoped pointer events, which a
  * `pointer-events-none` canvas would otherwise never receive — so we forward
  * window `pointermove`s to the canvas as synthetic events (dispatchEvent
- * bypasses hit-testing, and the runtime reads `clientX/clientY`). Desktop
- * pointers only, and fully disabled under reduced motion.
+ * bypasses hit-testing, and the runtime reads `clientX/clientY`). The
+ * forwarding only runs for fine pointers — touch has no cursor to follow.
  */
 export function SplineBackground() {
   const reduced = useReducedMotionSafe();
-  const enabled = useMediaQuery("(min-width: 768px) and (pointer: fine)");
+  const finePointer = useMediaQuery("(pointer: fine)");
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (reduced || !enabled) return;
+    if (reduced || !finePointer) return;
     const root = rootRef.current;
     if (!root) return;
 
@@ -65,9 +66,9 @@ export function SplineBackground() {
       window.removeEventListener("pointermove", onMove);
       if (frame) cancelAnimationFrame(frame);
     };
-  }, [reduced, enabled]);
+  }, [reduced, finePointer]);
 
-  if (reduced || !enabled) return null;
+  if (reduced) return null;
 
   return (
     <div

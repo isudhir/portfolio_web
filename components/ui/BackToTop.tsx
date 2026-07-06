@@ -31,7 +31,9 @@ export function BackToTop() {
           onClick={scrollToTop}
           aria-label="Back to top"
           className={cn(
-            "fixed bottom-24 right-6 z-50",
+            // Stacks above the chat button, which sits higher on mobile to
+            // clear the bottom nav dock.
+            "fixed bottom-[9.5rem] right-4 z-50 md:bottom-24 md:right-6",
             "flex items-center justify-center w-10 h-10 rounded-xl",
             "glass border border-border/50 shadow-lg",
             "text-muted-foreground hover:text-foreground",

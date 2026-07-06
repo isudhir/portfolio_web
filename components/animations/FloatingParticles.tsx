@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useCallback } from "react";
 import { useReducedMotionSafe } from "@/hooks/useReducedMotionSafe";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { cn } from "@/lib/utils";
 
 export interface FloatingParticlesProps {
@@ -23,18 +24,10 @@ const MAX_PARTICLES = 80;
 const MOUSE_RADIUS = 120;
 const MOUSE_STRENGTH = 0.025;
 
-function isTouchDevice(): boolean {
-  if (typeof window === "undefined") return false;
-  return (
-    "ontouchstart" in window ||
-    navigator.maxTouchPoints > 0
-  );
-}
-
 /**
  * Canvas-based floating particle field that drifts and reacts to mouse cursor.
- * Auto-disables on: touch devices, reduced motion, or when scrolled offscreen.
- * Cleans up rAF + event listeners + IntersectionObserver on unmount.
+ * Auto-disables on: coarse pointers (touch), reduced motion, or when scrolled
+ * offscreen. Cleans up rAF + event listeners + IntersectionObserver on unmount.
  */
 export function FloatingParticles({
   count = 60,
@@ -42,6 +35,9 @@ export function FloatingParticles({
   color = "var(--accent-purple)",
 }: FloatingParticlesProps) {
   const reduced = useReducedMotionSafe();
+  // Media-query hook (not a `typeof window` render branch) keeps server and
+  // first client render identical — a raw touch check here breaks hydration.
+  const coarsePointer = useMediaQuery("(pointer: coarse)");
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const mouseRef = useRef<{ x: number; y: number }>({ x: -9999, y: -9999 });
@@ -63,7 +59,7 @@ export function FloatingParticles({
   );
 
   useEffect(() => {
-    if (reduced || isTouchDevice()) return;
+    if (reduced || coarsePointer) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -177,10 +173,10 @@ export function FloatingParticles({
       observer.disconnect();
       ro.disconnect();
     };
-  }, [reduced, count, color, initParticles]);
+  }, [reduced, coarsePointer, count, color, initParticles]);
 
-  // Render nothing on reduced motion or touch
-  if (reduced || (typeof window !== "undefined" && isTouchDevice())) {
+  // Render nothing on reduced motion or coarse (touch) pointers
+  if (reduced || coarsePointer) {
     return null;
   }
 

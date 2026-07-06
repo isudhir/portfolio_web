@@ -10,7 +10,7 @@ export const social: SocialLink[] = [
   {
     id: 'github',
     label: 'GitHub',
-    href: 'https://github.com/sudhir-here', // TODO real handle
+    href: 'https://github.com/isudhir',
     icon: 'Github',
   },
   {

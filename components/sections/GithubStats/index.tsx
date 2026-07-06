@@ -48,7 +48,10 @@ export function GithubStats() {
         <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_320px]">
           <Reveal delay={0.1}>
             <GlassCard className="overflow-x-auto p-5">
-              <ContributionHeatmap seed={githubStats.heatmapSeed} weeks={githubStats.weeks} />
+              <ContributionHeatmap
+                seed={githubStats.heatmapSeed}
+                weeks={githubStats.weeks}
+              />
             </GlassCard>
           </Reveal>
           <Reveal delay={0.15}>

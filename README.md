@@ -53,10 +53,10 @@ Everything you'd normally want to change — your name, projects, colors, the 3D
 ```bash
 npm install          # install dependencies
 cp .env.example .env.local   # optional — for chat/contact/SEO config
-npm run dev          # start the dev server at http://localhost:3000
+npm run dev          # start the dev server at http://localhost:5000
 ```
 
-Then open <http://localhost:3000>.
+Then open <http://localhost:5000>.
 
 Before considering any change "done", all four gates should pass:
 
@@ -75,7 +75,7 @@ All are **optional** — the site runs fully without them. Copy `.env.example` t
 
 | Variable | Purpose | If unset |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Canonical site URL; used by metadata, `sitemap.xml`, `robots.txt`, and JSON‑LD. | Falls back to `http://localhost:3000` |
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL; used by metadata, `sitemap.xml`, `robots.txt`, and JSON‑LD. | Falls back to `http://localhost:5000` |
 | `NEXT_PUBLIC_CHAT_API` | Endpoint for the AI chat widget. | Widget uses a built‑in **mock** client (fully demoable, no backend) |
 | `NEXT_PUBLIC_CONTACT_API` | Contact‑form POST endpoint (Formspree‑compatible JSON). | Form shows a friendly "not configured" state |
 
@@ -320,7 +320,7 @@ The social share image is generated at build time by **`app/opengraph-image.tsx`
 
 | Command | Purpose |
 | --- | --- |
-| `npm run dev` | Dev server (Turbopack) at <http://localhost:3000> |
+| `npm run dev` | Dev server (Turbopack) at <http://localhost:5000> |
 | `npm run build` | Production build — prerenders all routes as static |
 | `npm run start` | Serve the production build |
 | `npm run lint` | ESLint — must be **0 errors and 0 warnings** |

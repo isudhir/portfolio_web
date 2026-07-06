@@ -6,23 +6,38 @@ import { seededSeries } from "@/lib/seeded";
 
 const LEVEL_PERCENT = [8, 25, 45, 70, 100];
 
-/** Decorative, deterministic contribution-style grid (illustrative only). */
-export function ContributionHeatmap({ seed, weeks }: { seed: number; weeks: number }) {
+/** Map a seeded float in [0, 1) to a contribution level 0–4. */
+function toLevel(v: number): number {
+  return v < 0.35 ? 0 : v < 0.55 ? 1 : v < 0.75 ? 2 : v < 0.9 ? 3 : 4;
+}
+
+interface ContributionHeatmapProps {
+  seed: number;
+  weeks: number;
+}
+
+/**
+ * Decorative contribution-style grid: a deterministic seeded pattern,
+ * clearly labelled illustrative. Tune via heatmapSeed/weeks in
+ * data/githubStats.ts.
+ */
+export function ContributionHeatmap({ seed, weeks }: ContributionHeatmapProps) {
   const reduced = useReducedMotionSafe();
-  const values = seededSeries(seed, weeks * 7);
+  const cells = seededSeries(seed, weeks * 7).map(toLevel);
 
   return (
     <div>
       <p className="mb-3 text-sm font-medium text-foreground/80">
         Contribution rhythm{" "}
-        <span className="text-xs font-normal text-muted-foreground">(illustrative)</span>
+        <span className="text-xs font-normal text-muted-foreground">
+          (illustrative)
+        </span>
       </p>
       <div
         className="grid w-max grid-flow-col gap-1"
         style={{ gridTemplateRows: "repeat(7, minmax(0, 1fr))" }}
       >
-        {values.map((v, i) => {
-          const level = v < 0.35 ? 0 : v < 0.55 ? 1 : v < 0.75 ? 2 : v < 0.9 ? 3 : 4;
+        {cells.map((level, i) => {
           const bg = `color-mix(in oklab, var(--accent-purple) ${LEVEL_PERCENT[level]}%, transparent)`;
           if (reduced) {
             return (

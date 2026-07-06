@@ -10,7 +10,7 @@ export const projects: Project[] = [
     image: '/projects/ai-workflow-engine.svg',
     tech: ['Node.js', 'TypeScript', 'OpenAI', 'LangChain', 'Redis', 'Bull Queue', 'Docker'],
     categories: ['AI', 'Backend'],
-    github: 'https://github.com/sudhir-here/ai-workflow-engine', // TODO real URL
+    github: 'https://github.com/isudhir/ai-workflow-engine', // TODO real URL
     demo: 'https://ai-workflow-engine.demo', // TODO real URL
     featured: true,
     // Case-study details (opens a modal on the card) — TODO confirm specifics
@@ -33,7 +33,7 @@ export const projects: Project[] = [
     image: '/projects/shipping-microservices.svg',
     tech: ['Node.js', 'TypeScript', 'Microservices', 'Redis', 'MongoDB', 'AWS', 'Docker'],
     categories: ['Backend', 'Full Stack'],
-    github: 'https://github.com/sudhir-here/shipping-microservices', // TODO real URL
+    github: 'https://github.com/isudhir/shipping-microservices', // TODO real URL
     demo: undefined,
     featured: true,
     // Case-study details (opens a modal on the card) — TODO confirm specifics
@@ -56,7 +56,7 @@ export const projects: Project[] = [
     image: '/projects/patient-engagement-platform.svg',
     tech: ['Angular', 'Node.js', 'TypeScript', 'Twilio', 'IBM Watson', 'MySQL'],
     categories: ['Full Stack'],
-    github: 'https://github.com/sudhir-here/patient-engagement', // TODO real URL
+    github: 'https://github.com/isudhir/patient-engagement', // TODO real URL
     demo: undefined,
   },
   {
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     image: '/projects/ehr-api-gateway.svg',
     tech: ['Node.js', 'TypeScript', 'REST APIs', 'MySQL', 'AWS', 'Nginx'],
     categories: ['Backend'],
-    github: 'https://github.com/sudhir-here/ehr-api-gateway', // TODO real URL
+    github: 'https://github.com/isudhir/ehr-api-gateway', // TODO real URL
     demo: undefined,
   },
   {
@@ -78,7 +78,7 @@ export const projects: Project[] = [
     image: '/projects/react-dashboard.svg',
     tech: ['React', 'Next.js', 'TypeScript', 'Tailwind', 'MongoDB'],
     categories: ['Frontend', 'Full Stack'],
-    github: 'https://github.com/sudhir-here/analytics-dashboard', // TODO real URL
+    github: 'https://github.com/isudhir/analytics-dashboard', // TODO real URL
     demo: 'https://analytics-dashboard.demo', // TODO real URL
   },
   {
@@ -89,7 +89,7 @@ export const projects: Project[] = [
     image: '/projects/mcp-ai-assistant.svg',
     tech: ['TypeScript', 'Claude', 'MCP', 'Node.js', 'Next.js'],
     categories: ['AI', 'Full Stack'],
-    github: 'https://github.com/sudhir-here/mcp-ai-assistant', // TODO real URL
+    github: 'https://github.com/isudhir/mcp-ai-assistant', // TODO real URL
     demo: 'https://mcp-ai-assistant.demo', // TODO real URL
     // Case-study details (opens a modal on the card) — TODO confirm specifics
     role: 'Creator',

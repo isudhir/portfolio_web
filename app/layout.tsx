@@ -40,8 +40,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col noise">
-        {/* Full-viewport 3D scene behind everything, follows the cursor (z-0).
-            Desktop pointers only; disabled under reduced motion. */}
+        {/* Full-viewport 3D scene behind everything (z-0). Follows the cursor
+            on fine pointers; disabled under reduced motion. */}
         <SplineBackground />
 
         {/* Vignette + grain layer (z-2) */}

@@ -66,10 +66,12 @@ function DockItem({
   };
 
   return (
-    <div className="relative flex items-center group">
-      {/* Tooltip — to the right of the icon for the vertical dock */}
+    <div className="relative flex items-center group shrink-0">
+      {/* Tooltip — to the right of the icon for the vertical dock. Hidden on
+          mobile: no hover there, and it would poke past the viewport edge. */}
       <span
         className={cn(
+          "hidden md:block",
           "absolute left-full top-1/2 -translate-y-1/2 ml-3",
           "rounded-md px-2 py-0.5 text-xs whitespace-nowrap",
           "bg-card/90 text-foreground border border-border",
@@ -97,10 +99,15 @@ function DockItem({
           scale,
         }}
       >
-        {/* Active indicator dot — on the left edge */}
+        {/* Active indicator dot — below the icon on mobile, on the left edge
+            for the desktop vertical rail */}
         {isActive && (
           <span
-            className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-purple"
+            className={cn(
+              "absolute w-1 h-1 rounded-full bg-purple",
+              "-bottom-1 left-1/2 -translate-x-1/2",
+              "md:bottom-auto md:-left-1.5 md:top-1/2 md:translate-x-0 md:-translate-y-1/2"
+            )}
             aria-hidden="true"
           />
         )}
@@ -111,9 +118,9 @@ function DockItem({
 }
 
 /**
- * Fixed left-center vertical glass dock driven from data/navigation.ts.
- * Hover magnification, active section highlighting, smooth-scroll on click.
- * Scrolls internally on short viewports.
+ * Fixed glass dock driven from data/navigation.ts. Vertical left-center rail
+ * on md+ (hover magnification, tooltips); horizontal bottom bar on mobile so
+ * it never overlaps section content. Scrolls internally when it can't fit.
  */
 export function FloatingDock() {
   const sectionIds = navigation.map((item) => item.id);
@@ -124,9 +131,13 @@ export function FloatingDock() {
     <nav
       aria-label="Section navigation dock"
       className={cn(
-        "fixed left-4 top-1/2 -translate-y-1/2 z-50",
-        // Never exceed the viewport height on short screens
-        "max-h-[calc(100vh-2rem)]"
+        "fixed z-50",
+        // Mobile: bottom-centered horizontal bar (respects home-indicator inset)
+        "bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2",
+        "max-w-[calc(100vw-1.5rem)]",
+        // md+: left-center vertical rail, never taller than the viewport
+        "md:bottom-auto md:left-4 md:top-1/2 md:max-w-none md:translate-x-0 md:-translate-y-1/2",
+        "md:max-h-[calc(100vh-2rem)]"
       )}
     >
       <motion.div
@@ -137,15 +148,16 @@ export function FloatingDock() {
           mouseY.set(Infinity);
         }}
         className={cn(
-          "glass flex flex-col items-center gap-1 rounded-2xl px-2 py-3",
+          "glass flex items-center gap-1 rounded-2xl",
           "border border-border/50 shadow-lg",
-          // Scrollable on short screens; from sm+ let hover labels overflow
-          // to the right instead of being clipped (overflow-y:auto would
-          // otherwise force overflow-x to clip too).
-          "overflow-y-auto scrollbar-none sm:overflow-visible"
+          // Mobile: horizontal row, swipeable when items exceed the width
+          "flex-row overflow-x-auto px-3 py-2 scrollbar-none",
+          // md+: vertical column; overflow stays visible so hover labels can
+          // extend to the right instead of being clipped
+          "md:flex-col md:overflow-visible md:px-2 md:py-3"
         )}
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
+        initial={{ y: 24, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 200, damping: 30, delay: 0.5 }}
       >
         {navigation.map((item) => (

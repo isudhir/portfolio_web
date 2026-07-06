@@ -1,14 +1,27 @@
-// TODO: update numbers by hand from https://github.com/sudhir-here (no API — static data)
+// ─────────────────────────────────────────────────────────────────────────────
+// GitHub stats — fully static and hand-maintained. Edit the values below and
+// the GitHub section updates; no component changes needed.
+//
+//   counters   headline numbers. `value` animates from 0 on scroll-into-view;
+//              `suffix` renders after it ("+" reads as "and counting", "" for
+//              an exact figure).
+//   languages  the "Languages" bars. Keep `percent`s summing to 100.
+//              `accent` is "purple" | "indigo" | "cyan".
+//   heatmapSeed / weeks
+//              the contribution grid is decorative and labelled
+//              "(illustrative)" in the UI — change `heatmapSeed` to reshuffle
+//              its pattern, `weeks` to widen/narrow it.
+// ─────────────────────────────────────────────────────────────────────────────
 import type { GithubStats } from '@/types';
 
 export const githubStats: GithubStats = {
-  username: 'sudhir-here',
-  profileUrl: 'https://github.com/sudhir-here',
+  username: 'isudhir',
+  profileUrl: 'https://github.com/isudhir',
   counters: [
-    { label: 'Public Repos', value: 24, suffix: '+' }, // TODO real number
-    { label: 'Total Stars', value: 60, suffix: '+' }, // TODO real number
-    { label: 'Contributions / yr', value: 900, suffix: '+' }, // TODO real number
-    { label: 'Pull Requests', value: 150, suffix: '+' }, // TODO real number
+    { label: 'Public Repos', value: 24, suffix: '+' },
+    { label: 'Total Stars', value: 60, suffix: '+' },
+    { label: 'Contributions / yr', value: 900, suffix: '+' },
+    { label: 'Pull Requests', value: 150, suffix: '+' },
   ],
   languages: [
     { name: 'TypeScript', percent: 46, accent: 'purple' },

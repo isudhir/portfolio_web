@@ -7,7 +7,7 @@ export const siteConfig = {
   title: "Sudhir Kumar — Software Engineer II | Full Stack & AI Systems",
   description:
     "Software Engineer II with 5+ years building scalable applications, APIs, microservices and AI-powered workflows. Node.js, TypeScript, Angular, React, Next.js, and agentic AI systems.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:5000",
 } as const;
 
 export function buildMetadata(): Metadata {

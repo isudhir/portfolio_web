@@ -50,7 +50,8 @@ export function ChatButton() {
 
   return (
     <div
-      className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3"
+      // Mobile sits above the bottom nav dock; md+ returns to the corner.
+      className="fixed bottom-20 right-4 z-50 flex flex-col items-end gap-3 md:bottom-6 md:right-6"
       aria-label="AI Chat widget"
     >
       {/* Chat window */}
